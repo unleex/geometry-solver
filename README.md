@@ -1,2 +1,2 @@
-# math-autocalculation
-repo to automatically find solution to tasks from school maths
+# geometry-solver
+repo to automatically find solution for geometry problems

@@ -21,7 +21,7 @@ class Point(core.BaseObject):
             If None, the point is considered undefined.
         """
         assert name not in naming.existing_point_names, f"Point {name} already exists!"
-        # TODO: maybe allow it somehow?
+        # XXX: maybe allow it somehow?
         assert len(name) == 1 and name.isalpha(), "Point must be named as letter"
         naming.existing_point_names.append(name)
         super().__init__(name=name, plane=plane)

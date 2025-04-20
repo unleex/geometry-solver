@@ -58,8 +58,7 @@ class Polygon(core.BaseObject):
 
         if self.inscribed_in:
             self.is_cyclic = True
-        else:
-            self.build_circumcircle(check_if_possible=self.is_cyclic is not None)
+            self.build_circumcircle()
         
         
     def build_perpendicular_bisector(self, to_side: basic_objects.LineSegment):
@@ -91,7 +90,6 @@ class Polygon(core.BaseObject):
         # XXX: warn if already inscribed?
         if not check_if_possible:
             self.is_cyclic = True
-            
         else:
             assert self.is_cyclic, "Non-cyclic polygons cannot be inscribed."
         center = basic_objects.Point(
@@ -144,14 +142,14 @@ class RegularTriangle(Triangle):
             self, 
             plane,
             vertices: list[basic_objects.Point],
-            side_length: float = None
+            side_length: float | None = None
             ):
         
         super().__init__(plane, vertices)
         if not side_length:
             return
         for edge in self.edges:
-            if not edge.value.is_constant():  
+            if not edge.is_constant():  
                 edge.set_value(side_length)
             assert edge is None or edge.value == side_length
         self.edges[0].as_new_relation == self.edges[1]
@@ -167,10 +165,12 @@ class RegularTriangle(Triangle):
             ):
         super().build_circumcircle(
             check_if_possible,
-            radius=radius)
+            radius=radius
+            )
         self.inscribed_in.add_definition(
             definitions.circumcirle_radius_of_regular_triangle(
-            self
+            circumcircle=self.inscribed_in,
+            tri=self
         ))
     
 

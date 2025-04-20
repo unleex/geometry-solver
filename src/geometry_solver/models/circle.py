@@ -10,10 +10,9 @@ class Circle(core.BaseObject):
             plane, 
             center: "basic_objects.Point",
             radius = None,
-            inscribed_polygons: list["polygons.Polygon"] = None
+            inscribed_polygons: list["polygons.Polygon"]| None = None
         ):
         super().__init__(name, plane, radius)
-        self.radius = radius
         self.center = center
         self.inscribed_polygons = inscribed_polygons if inscribed_polygons else []
     

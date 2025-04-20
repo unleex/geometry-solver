@@ -1,5 +1,6 @@
 from geometry_solver.models import basic_objects, polygons
 from geometry_solver.core import core
+import sympy
 
 
 def get_distance(p1: "basic_objects.Point", p2: "basic_objects.Point"):
